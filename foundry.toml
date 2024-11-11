@@ -4,3 +4,11 @@ out = "out"
 libs = ["lib"]
 
 # See more config options https://github.com/foundry-rs/foundry/blob/master/crates/config/README.md#all-options
+
+# Uncomment to use sepolia rpc
+[rpc_endpoints]
+sepolia = "${SEPOLIA_RPC}"
+
+# Uncomment to use etherscan
+# [etherscan]
+# sepolia = { key = "${ETHERSCAN_API_KEY}" }
