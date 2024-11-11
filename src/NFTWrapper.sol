@@ -13,7 +13,7 @@ contract NFTWrapper is AccessControl {
 
     mapping(address => uint256) public conversion_rate;
     mapping(address => address) public wrapped_token;
-    mapping(address => uint256[]) public nft_pools;
+    mapping(address => uint256[]) private nft_pools;
 
     constructor(address _defaultAdmin) {
         _grantRole(DEFAULT_ADMIN_ROLE, _defaultAdmin);
@@ -63,5 +63,13 @@ contract NFTWrapper is AccessControl {
             tokenIds[i] = tokenIds[i + 1];
         }
         tokenIds.pop();
+    }
+
+    function getNFTPools(address nftContract) public view returns (uint256[] memory) {
+        return nft_pools[nftContract];
+    }
+
+    function onERC721Received(address, address, uint256, bytes calldata) public virtual returns (bytes4) {
+        return this.onERC721Received.selector;
     }
 }
