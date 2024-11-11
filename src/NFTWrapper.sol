@@ -7,7 +7,6 @@ import "./NFTWrappedToken.sol";
 import "./RWANFT.sol";
 
 contract NFTWrapper is AccessControl {
-
     NFTWrappedToken public nftWrappedToken;
     address public defaultAdmin;
 
@@ -46,20 +45,20 @@ contract NFTWrapper is AccessControl {
         require(wrapped_token[nftContract] != address(0), "NFT not wrapped");
         uint256[] storage tokenIds = nft_pools[nftContract];
         require(tokenIds.length > 0, "No NFTs to unwrap");
-        
+
         uint256 randomIndex = generateRandomNumber() % tokenIds.length;
         uint256 tokenId = tokenIds[randomIndex];
-        
+
         RWANFT rwanft = RWANFT(nftContract);
         NFTWrappedToken wrappedToken = NFTWrappedToken(wrapped_token[nftContract]);
-        
+
         require(wrappedToken.balanceOf(msg.sender) >= conversion_rate[nftContract], "Insufficient wrapped tokens");
-        
+
         wrappedToken.burnFrom(msg.sender, conversion_rate[nftContract]);
         rwanft.safeTransferFrom(address(this), msg.sender, tokenId);
-        
+
         // Remove the unwrapped token from the pool by shifting elements
-        for (uint i = randomIndex; i < tokenIds.length - 1; i++) {
+        for (uint256 i = randomIndex; i < tokenIds.length - 1; i++) {
             tokenIds[i] = tokenIds[i + 1];
         }
         tokenIds.pop();

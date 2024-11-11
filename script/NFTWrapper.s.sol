@@ -7,6 +7,7 @@ import {NFTWrapper} from "../src/NFTWrapper.sol";
 contract NFTWrapperScript is Script {
     NFTWrapper public nftWrapper;
     address public defaultAdmin = makeAddr("defaultAdmin");
+
     function setUp() public {}
 
     function run() public {

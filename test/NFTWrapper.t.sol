@@ -2,7 +2,17 @@
 pragma solidity ^0.8.13;
 
 import {Test} from "forge-std/Test.sol";
-import {NFTWrapper, RWAMetadata, Issuer, AssetType, AssetDetails, Valuation, Document, Owner, RoyaltyInfo} from "../src/NFTWrapper.sol";
+import {
+    NFTWrapper,
+    RWAMetadata,
+    Issuer,
+    AssetType,
+    AssetDetails,
+    Valuation,
+    Document,
+    Owner,
+    RoyaltyInfo
+} from "../src/NFTWrapper.sol";
 import {NFTWrappedToken} from "../src/NFTWrappedToken.sol";
 import {RWANFT} from "../src/RWANFT.sol";
 
@@ -26,19 +36,12 @@ contract NFTWrapperTest is Test {
             image: "",
             externalUrl: "",
             assetId: "",
-            issuer: Issuer({
-                name: "",
-                contact: "",
-                certification: ""
-            }),
+            issuer: Issuer({name: "", contact: "", certification: ""}),
             assetType: AssetType.Commodity,
             assetDetails: AssetDetails({
                 location: "",
                 legalStatus: "",
-                valuation: Valuation({
-                    currency: "",
-                    amount: 0
-                }),
+                valuation: Valuation({currency: "", amount: 0}),
                 issuedDate: "",
                 expiryDate: "",
                 condition: "",
@@ -46,20 +49,10 @@ contract NFTWrapperTest is Test {
                 material: "",
                 color: "",
                 historicalSignificance: "",
-                document: Document({
-                    documentName: "",
-                    documentType: "",
-                    documentUrl: ""
-                })
+                document: Document({documentName: "", documentType: "", documentUrl: ""})
             }),
-            currentOwner: Owner({
-                name: "",
-                contact: ""
-            }),
-            royaltyInfo: RoyaltyInfo({
-                recipient: address(1),
-                percentage: 0
-            }),
+            currentOwner: Owner({name: "", contact: ""}),
+            royaltyInfo: RoyaltyInfo({recipient: address(1), percentage: 0}),
             legalJurisdiction: "",
             disclaimer: ""
         });
@@ -108,7 +101,6 @@ contract NFTWrapperTest is Test {
         rwaNFT.mint(defaultMetadata);
         vm.stopPrank();
 
-
         vm.startPrank(minter);
         rwaNFT.setApprovalForAll(address(nftWrapper), true);
         nftWrapper.wrap(address(rwaNFT), 0);
@@ -132,8 +124,8 @@ contract NFTWrapperTest is Test {
     }
 
     // function test_Increment() public {
-        // nftWrapper.increment();
-        // assertEq(nftWrapper.number(), 1);
+    // nftWrapper.increment();
+    // assertEq(nftWrapper.number(), 1);
     // }
 
     // function testFuzz_SetNumber(uint256 x) public {

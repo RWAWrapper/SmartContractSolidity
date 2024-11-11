@@ -80,9 +80,7 @@ contract RWANFT is ERC721, AccessControl {
 
     mapping(uint256 => RWAMetadata) public tokenMetadata;
 
-    constructor(address defaultAdmin, address minter)
-        ERC721("Real Word Assets", "RWA")
-    {
+    constructor(address defaultAdmin, address minter) ERC721("Real Word Assets", "RWA") {
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
         _grantRole(MINTER_ROLE, minter);
     }
@@ -107,12 +105,7 @@ contract RWANFT is ERC721, AccessControl {
 
     // The following functions are overrides required by Solidity.
 
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, AccessControl)
-        returns (bool)
-    {
+    function supportsInterface(bytes4 interfaceId) public view override(ERC721, AccessControl) returns (bool) {
         return super.supportsInterface(interfaceId);
     }
 }

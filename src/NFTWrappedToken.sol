@@ -9,9 +9,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 contract NFTWrappedToken is ERC20, ERC20Burnable, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
 
-    constructor(address defaultAdmin, address minter, string memory name, string memory symbol)
-        ERC20(name, symbol)
-    {
+    constructor(address defaultAdmin, address minter, string memory name, string memory symbol) ERC20(name, symbol) {
         _grantRole(DEFAULT_ADMIN_ROLE, defaultAdmin);
         _grantRole(MINTER_ROLE, minter);
     }
