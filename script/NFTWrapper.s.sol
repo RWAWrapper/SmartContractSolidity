@@ -6,13 +6,13 @@ import {NFTWrapper} from "../src/NFTWrapper.sol";
 
 contract NFTWrapperScript is Script {
     NFTWrapper public nftWrapper;
-
+    address public defaultAdmin = makeAddr("defaultAdmin");
     function setUp() public {}
 
     function run() public {
         vm.startBroadcast();
 
-        nftWrapper = new NFTWrapper();
+        nftWrapper = new NFTWrapper(defaultAdmin);
 
         vm.stopBroadcast();
     }
